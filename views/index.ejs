@@ -4,13 +4,18 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
     <textarea id="textEditor"></textarea>
     <script>
       var socket = io();
+      $("#textEditor").on('input propertychange', function(){
+        socket.emit('textEditorUpdate', $('#textEditor').val());
+      });
+      socket.on('textEditorUpdate', function(data){
+        $('#textEditor').val(data);
+      });
     </script>
   </body>
 </html>
