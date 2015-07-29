@@ -10,4 +10,5 @@ html, body {
   resize: none;
   border: none;
   padding: 10px;
+  outline: none;
 }
